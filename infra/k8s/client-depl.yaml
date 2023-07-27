@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: client
-          image: echogod/client
+          image: echogod/task-client
 ---
 apiVersion: v1
 kind: Service

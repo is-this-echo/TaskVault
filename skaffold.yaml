@@ -8,7 +8,7 @@ build:
   local:
     push: false
   artifacts:
-    - image: echogod/auth
+    - image: echogod/task-auth
       context: auth
       docker:
         dockerfile: Dockerfile
@@ -16,7 +16,7 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: ./
-    - image: echogod/client
+    - image: echogod/task-client
       context: client
       docker:
         dockerfile: Dockerfile
