@@ -24,3 +24,11 @@ build:
         manual:
           - src: "**/*.js"
             dest: ./
+    - image: echogod/tasks
+      context: tasks
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: ./
