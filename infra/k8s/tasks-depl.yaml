@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: auth-depl
+  name: tasks-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: auth
+      app: tasks
   template:
     metadata:
       labels:
-        app: auth
+        app: tasks
     spec:
       containers:
-        - name: auth
-          image: echogod/task-auth
+        - name: tasks
+          image: echogod/tasks
           env:
             - name: MONGO_URI
-              value: "mongodb://auth-mongo-srv:27017/auth"
+              value: "mongodb://tasks-mongo-srv:27017/tasks"
             - name: JWT_KEY
               valueFrom:
                 secretKeyRef:
@@ -27,12 +27,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: auth-srv
+  name: tasks-srv
 spec:
   selector:
-    app: auth
+    app: tasks
   ports:
-    - name: auth
+    - name: tasks
       protocol: TCP
       port: 3000
       targetPort: 3000
