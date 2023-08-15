@@ -4,6 +4,11 @@ import { json } from "body-parser";
 import cookieSession from "cookie-session";
 import { errorHandler, NotFoundError, currentUser } from "@echoeventix/common";
 
+import { indexTaskRouter } from "./routes/index";
+import { createTaskRouter } from "./routes/new";
+import { showTaskRouter } from "./routes/show";
+import { updateTaskRouter } from "./routes/update";
+
 const app = express();
 
 // allows express to trust the proxy connection created by ingress-nginx controller
@@ -18,6 +23,11 @@ app.use(
 );
 
 app.use(currentUser);
+
+app.use(createTaskRouter);
+app.use(showTaskRouter);
+app.use(indexTaskRouter);
+app.use(updateTaskRouter);
 
 app.all("*", async () => {
   throw new NotFoundError();

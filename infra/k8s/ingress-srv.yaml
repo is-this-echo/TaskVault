@@ -17,6 +17,13 @@ spec:
                 name: auth-srv
                 port:
                   number: 3000
+          - path: /api/tasks/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: tasks-srv
+                port:
+                  number: 3000
           - path: /?(.*)
             pathType: Prefix
             backend:
